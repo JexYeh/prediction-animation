@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla CSS Animation Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #ccc;
+            font-weight: 400;
+        }
+
+        .icon-container {
+            display: flex;
+            gap: 40px;
+            padding: 50px 70px;
+            background-color: #1a1a1a;
+            border-radius: 28px;
+            border: 1px solid #333;
+        }
+
+        .icon-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .icon-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .icon-wrapper:active {
+            transform: scale(0.9);
+        }
+
+        /* --- Success Animation --- */
+        .circle-outer-success {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background-color: rgba(34, 197, 94, 0.18);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .circle-inner-success {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background-color: #22C55E;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+        }
+
+        .checkmark {
+            position: relative;
+            z-index: 1;
+            width: 16px;
+            height: 16px;
+        }
+
+        .checkmark-path {
+            stroke-dasharray: 20;
+            stroke-dashoffset: 20;
+            animation: drawLine 0.4s ease-out 0.4s forwards;
+        }
+
+        /* --- Error Animation --- */
+        .circle-outer-error {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background-color: rgba(239, 68, 68, 0.18);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .circle-inner-error {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background-color: #EF4444;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+        }
+
+        .error-cross {
+            position: relative;
+            z-index: 1;
+            width: 10px;
+            height: 10px;
+            transform: scale(0);
+            transform-origin: center;
+            animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+        }
+
+        /* Keyframes */
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes drawLine {
+            0% { stroke-dashoffset: 20; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .hint {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Prediction Market Icons Demo</h1>
+        
+        <div class="icon-container">
+            <!-- Success Group -->
+            <div class="icon-group">
+                <div class="icon-wrapper" onclick="restart(this)">
+                    <div class="circle-outer-success"></div>
+                    <div class="circle-inner-success"></div>
+                    <svg class="checkmark" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 12L10 16L18 8" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="checkmark-path"/>
+                    </svg>
+                </div>
+                <div class="label">Success</div>
+            </div>
+
+            <!-- Error Group -->
+            <div class="icon-group">
+                <div class="icon-wrapper" onclick="restart(this)">
+                    <div class="circle-outer-error"></div>
+                    <div class="circle-inner-error"></div>
+                    <svg class="error-cross" viewBox="0 0 8 8" fill="none">
+                        <path d="M1 1L7 7M7 1L1 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="label">Error</div>
+            </div>
+        </div>
+
+        <p class="hint">Tip: Click the icons to replay the animation</p>
+    </div>
+
+    <script>
+        function restart(el) {
+            const html = el.innerHTML;
+            el.innerHTML = '';
+            setTimeout(() => { el.innerHTML = html; }, 10);
+        }
+    </script>
+</body>
+</html>
