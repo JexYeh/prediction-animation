@@ -2,68 +2,18 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vanilla CSS Animation Demo</title>
+    <title>Icons Only Demo</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: #fff;
-        }
-
-        .container {
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #ccc;
-            font-weight: 400;
-        }
-
-        .icon-container {
-            display: flex;
-            gap: 40px;
-            padding: 50px 70px;
-            background-color: #1a1a1a;
-            border-radius: 28px;
-            border: 1px solid #333;
-        }
-
-        .icon-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .label {
-            font-size: 12px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
+        /* RD 同學：以下為核心動畫 CSS，複製到您的專案即可 */
+        
         .icon-wrapper {
             position: relative;
-            display: flex;
+            display: inline-flex;
             justify-content: center;
             align-items: center;
             width: 42px;
             height: 42px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .icon-wrapper:active {
-            transform: scale(0.9);
+            margin: 20px;
         }
 
         /* --- Success Animation --- */
@@ -148,53 +98,37 @@
             100% { stroke-dashoffset: 0; }
         }
 
-        .hint {
-            margin-top: 20px;
-            font-size: 11px;
-            color: #555;
+        /* 僅供預覽使用的背景 */
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Prediction Market Icons Demo</h1>
-        
-        <div class="icon-container">
-            <!-- Success Group -->
-            <div class="icon-group">
-                <div class="icon-wrapper" onclick="restart(this)">
-                    <div class="circle-outer-success"></div>
-                    <div class="circle-inner-success"></div>
-                    <svg class="checkmark" viewBox="0 0 24 24" fill="none">
-                        <path d="M6 12L10 16L18 8" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="checkmark-path"/>
-                    </svg>
-                </div>
-                <div class="label">Success</div>
-            </div>
-
-            <!-- Error Group -->
-            <div class="icon-group">
-                <div class="icon-wrapper" onclick="restart(this)">
-                    <div class="circle-outer-error"></div>
-                    <div class="circle-inner-error"></div>
-                    <svg class="error-cross" viewBox="0 0 8 8" fill="none">
-                        <path d="M1 1L7 7M7 1L1 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div class="label">Error</div>
-            </div>
-        </div>
-
-        <p class="hint">Tip: Click the icons to replay the animation</p>
+    <!-- Success Icon -->
+    <div class="icon-wrapper">
+        <div class="circle-outer-success"></div>
+        <div class="circle-inner-success"></div>
+        <svg class="checkmark" viewBox="0 0 24 24" fill="none">
+            <path d="M6 12L10 16L18 8" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="checkmark-path"/>
+        </svg>
     </div>
 
-    <script>
-        function restart(el) {
-            const html = el.innerHTML;
-            el.innerHTML = '';
-            setTimeout(() => { el.innerHTML = html; }, 10);
-        }
-    </script>
+    <!-- Error Icon -->
+    <div class="icon-wrapper">
+        <div class="circle-outer-error"></div>
+        <div class="circle-inner-error)</div>
+        <div class="circle-inner-error"></div>
+        <svg class="error-cross" viewBox="0 0 8 8" fill="none">
+            <path d="M1 1L7 7M7 1L1 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
 </body>
 </html>
